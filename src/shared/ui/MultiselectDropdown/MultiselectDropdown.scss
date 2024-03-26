@@ -1,0 +1,33 @@
+@import "src/shared/styles/variables";
+
+.multiselect_dropdown {
+    position: relative;
+
+    .panel {
+        position: relative;
+        top: 100px;
+        margin: auto;
+        width: 184px;
+        display: grid;
+        animation-duration: 0.7s;
+        animation-name: slidein;
+
+        @keyframes slidein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .searchText {
+            margin-left: 2px;
+            padding-left: 8px;
+            height: $height;
+            width: $width;
+            border: $style_border;
+        }
+    }
+}

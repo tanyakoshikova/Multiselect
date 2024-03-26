@@ -1,0 +1,12 @@
+@import "src/shared/styles/variables";
+
+fieldset {
+  align-items: center;
+  border: $style_border;
+  background: $white;
+
+  &.selected {
+    background: #dcdcdc;
+    font-weight: bold;
+  }
+}
