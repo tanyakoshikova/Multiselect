@@ -10,15 +10,15 @@ export interface MultiselectDropdownProps {
 export const cities: City[] = [
     {
         name: "Москва",
-        abbreviation: "Москва",
+        abbreviation: "Мск",
         icon: city
     }, {
         name: "Санкт-Петербург",
-        abbreviation: "Санкт-Петербург",
+        abbreviation: "Спб",
         icon: one
     }, {
         name: "Новосибирск",
-        abbreviation: "Новосибирск",
+        abbreviation: "Нск",
         icon: scape
     }
 ];
