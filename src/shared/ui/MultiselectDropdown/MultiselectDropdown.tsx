@@ -1,19 +1,46 @@
-import {FC, useState} from "react";
+import React, {FC, useEffect, useState, useRef } from "react";
 import "./MultiselectDropdown.scss";
 import Button from "../Button/Button";
-import {cities} from "./MultiselectDropdown.props";
 import DataFields from "../DataFields/DataFields";
+import {MultiselectDropdownProps} from "./MultiselectDropdown.props";
 
-const MultiselectDropdown: FC = () => {
+const MultiselectDropdown: FC<MultiselectDropdownProps> = ({cities}) => {
 
     const [isDropdownDisplayed, setIsDropdownDisplayed] = useState(false);
-    const [selectedStates, setSelectedStates] = useState<Record<string, boolean>>(
-        cities.reduce((obj, state) => ({...obj, [state.abbreviation]: false}), {}));
+    const [selectedStates, setSelectedStates] = useState<Record<string, boolean>>({});
+        // cities.reduce((obj, state) => ({...obj, [state.abbreviation]: false}), {}));
     const [searchText, setSearchText] = useState('');
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            setIsDropdownDisplayed(false);
+        }
+    };
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownDisplayed(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     const toggleDropdown = () => {
         if (isDropdownDisplayed) {
-            setIsDropdownDisplayed(false);
+            setIsDropdownDisplayed(prevState => !prevState);
+            setSearchText('');
             setSelectedStates(prevState => {
                 const resetState: Record<string, boolean> = {};
                 Object.keys(prevState).forEach(key => {
@@ -29,16 +56,16 @@ const MultiselectDropdown: FC = () => {
     const buttonText = Object.keys(selectedStates).filter((key: string) =>
         selectedStates[key]).join(', ') || "Cities";
     const filteredCities = cities.filter(city =>
-        city.name.toLowerCase().includes(searchText.toLowerCase()));
+        city.name.toLowerCase().includes(searchText.toLowerCase().trim()));
 
     return (
-        <div className="multiselect_dropdown">
+        <div className="multiselectDropdown" ref={dropdownRef}>
             <Button onClick={() => {
                 toggleDropdown();
                 setSearchText('');
-            }} buttonText={buttonText} isDropdownDisplayed={isDropdownDisplayed} />
+            }} buttonText={buttonText} isDropdownDisplayed={isDropdownDisplayed}/>
             {isDropdownDisplayed && (
-                    <div className="panel">
+                <div className="panel">
                     <input className="searchText"
                            type="text"
                            value={searchText}
@@ -47,12 +74,12 @@ const MultiselectDropdown: FC = () => {
                     />
                     {searchText ? (
                         filteredCities.map(city => (
-                            <DataFields state={city} selectedStates={selectedStates}
+                            <DataFields key={city.abbreviation} state={city} selectedStates={selectedStates}
                                         setSelectedStates={setSelectedStates} />
                         ))
                     ) : (
                         cities.map(city => (
-                            <DataFields state={city} selectedStates={selectedStates}
+                            <DataFields key={city.abbreviation} state={city} selectedStates={selectedStates}
                                         setSelectedStates={setSelectedStates} />
                         ))
                     )}

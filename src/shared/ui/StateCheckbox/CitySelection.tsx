@@ -1,8 +1,8 @@
 import {FC} from "react";
-import {CitySelectionProps} from "./CitySelection.props"
 import "./CitySelection.scss"
+import {CityProps} from "../../interfaces/types";
 
-const CitySelection: FC<CitySelectionProps> = ({ state, setSelectedStates, selectedStates}) => {
+const CitySelection: FC<CityProps> = ({ state, setSelectedStates, selectedStates}) => {
 
     return (
         <div

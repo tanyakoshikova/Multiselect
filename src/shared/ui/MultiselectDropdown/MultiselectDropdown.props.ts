@@ -1,25 +1,24 @@
 import city from "./icons/city.svg";
 import one from "./icons/one.svg";
 import scape from "./icons/scape.svg";
+import {City} from "../../interfaces/types";
 
-export interface City {
-    name: string;
-    abbreviation: string;
-    icon: string;
+export interface MultiselectDropdownProps {
+    cities: City[];
 }
 
 export const cities: City[] = [
     {
         name: "Москва",
-        abbreviation: "Мск",
+        abbreviation: "Москва",
         icon: city
     }, {
         name: "Санкт-Петербург",
-        abbreviation: "Спб",
+        abbreviation: "Санкт-Петербург",
         icon: one
     }, {
         name: "Новосибирск",
-        abbreviation: "Нск",
+        abbreviation: "Новосибирск",
         icon: scape
     }
 ];

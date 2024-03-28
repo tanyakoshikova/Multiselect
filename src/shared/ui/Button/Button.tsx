@@ -9,7 +9,7 @@ const Button: FC<ButtonProps> = ({onClick, buttonText, isDropdownDisplayed}) => 
         <button className="button" onClick={onClick}>
             {buttonText}
             {isDropdownDisplayed
-                ? <img src={close} alt="pointer" className="potateSVG"/>
+                ? <img src={close} alt="pointer"/>
                 : <img src={pointer} alt="pointer"/>}
         </button>
     );

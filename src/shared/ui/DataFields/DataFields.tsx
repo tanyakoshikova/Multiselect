@@ -1,17 +1,16 @@
 import {FC} from "react";
 import "./DataFields.scss";
 import CitySelection from "../StateCheckbox/CitySelection";
-import {DataFieldsProps} from "./DataFields.props";
+import {CityProps} from "../../interfaces/types";
 
-const DataFields: FC<DataFieldsProps> = ({
+const DataFields: FC<CityProps> = ({
                                              state,
                                              selectedStates,
                                              setSelectedStates
                                          }) => {
     return (
-        <fieldset key={state.abbreviation}
-                  className={selectedStates[state.abbreviation] ? "selected ": ''}>
-            <CitySelection state={state} selectedStates={selectedStates}
+        <fieldset className={selectedStates[state.abbreviation] ? "selected ": ''}>
+            <CitySelection key={state.abbreviation} state={state} selectedStates={selectedStates}
                            setSelectedStates={setSelectedStates} />
         </fieldset>
     );

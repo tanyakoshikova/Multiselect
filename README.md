@@ -35,7 +35,7 @@ onClick();
 - Интерфейс для пропсов вынесены в отдельный файл
 
 ```typescript
-CitySelection.props.ts;
+MultiselectDropdown.props.ts;
 ```
 
 

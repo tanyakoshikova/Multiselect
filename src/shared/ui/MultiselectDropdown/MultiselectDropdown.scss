@@ -1,7 +1,11 @@
 @import "src/shared/styles/variables";
 
-.multiselect_dropdown {
-    position: relative;
+.multiselectDropdown {
+    position: absolute;
+    height: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50px;
 
     .panel {
         position: relative;

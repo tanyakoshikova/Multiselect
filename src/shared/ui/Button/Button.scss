@@ -5,16 +5,21 @@
   top: 100px;
   margin: auto;
   background: $white;
-  height: $height;
+  min-height: $height;
   width: $width;
+  height: fit-content;
   display: flex;
   align-items: center;
   padding-left: 10px;
+  padding-right: 22px;
   justify-content: space-between;
   border: $style_border;
   color: $color_button;
+  text-align: left;
 
-  img.potateSVG {
-    transform: rotate(180deg);
+  img {
+    position: absolute;
+    top:8px;
+    right:2px;
   }
 }
