@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState, useRef } from "react";
+import React, {FC, useEffect, useState, useRef} from "react";
 import "./MultiselectDropdown.scss";
 import Button from "../Button/Button";
 import DataFields from "../DataFields/DataFields";
@@ -8,21 +8,8 @@ const MultiselectDropdown: FC<MultiselectDropdownProps> = ({cities}) => {
 
     const [isDropdownDisplayed, setIsDropdownDisplayed] = useState(false);
     const [selectedStates, setSelectedStates] = useState<Record<string, boolean>>({});
-        // cities.reduce((obj, state) => ({...obj, [state.abbreviation]: false}), {}));
     const [searchText, setSearchText] = useState('');
     const dropdownRef = useRef<HTMLDivElement>(null);
-
-    const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setIsDropdownDisplayed(false);
-        }
-    };
-    useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -38,19 +25,7 @@ const MultiselectDropdown: FC<MultiselectDropdownProps> = ({cities}) => {
     }, []);
 
     const toggleDropdown = () => {
-        if (isDropdownDisplayed) {
-            setIsDropdownDisplayed(prevState => !prevState);
-            setSearchText('');
-            setSelectedStates(prevState => {
-                const resetState: Record<string, boolean> = {};
-                Object.keys(prevState).forEach(key => {
-                    resetState[key] = false;
-                });
-                return resetState;
-            });
-        } else {
-            setIsDropdownDisplayed(true);
-        }
+        setIsDropdownDisplayed(prevState => !prevState);
     };
 
     const buttonText = Object.keys(selectedStates).filter((key: string) =>
@@ -75,12 +50,12 @@ const MultiselectDropdown: FC<MultiselectDropdownProps> = ({cities}) => {
                     {searchText ? (
                         filteredCities.map(city => (
                             <DataFields key={city.abbreviation} state={city} selectedStates={selectedStates}
-                                        setSelectedStates={setSelectedStates} />
+                                        setSelectedStates={setSelectedStates}/>
                         ))
                     ) : (
                         cities.map(city => (
                             <DataFields key={city.abbreviation} state={city} selectedStates={selectedStates}
-                                        setSelectedStates={setSelectedStates} />
+                                        setSelectedStates={setSelectedStates}/>
                         ))
                     )}
                 </div>
