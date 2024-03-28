@@ -2,13 +2,13 @@
 
 .button {
   position: relative;
-  top: 100px;
+  display: inline-block;
+  top: 0;
   margin: auto;
   background: $white;
   min-height: $height;
   width: $width;
   height: fit-content;
-  display: flex;
   align-items: center;
   padding-left: 10px;
   padding-right: 22px;

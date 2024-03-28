@@ -1,18 +1,15 @@
 @import "src/shared/styles/variables";
 
 .multiselectDropdown {
-    position: absolute;
-    height: 0;
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    top: 50px;
 
     .panel {
-        position: relative;
-        top: 100px;
-        margin: auto;
-        width: 184px;
-        display: grid;
+        position: absolute;
+        width: 100%;
         animation-duration: 0.7s;
         animation-name: slidein;
 
@@ -27,8 +24,6 @@
         }
 
         .searchText {
-            margin-left: 2px;
-            padding-left: 8px;
             height: $height;
             width: $width;
             border: $style_border;

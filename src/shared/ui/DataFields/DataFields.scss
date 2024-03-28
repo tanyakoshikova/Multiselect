@@ -4,6 +4,7 @@ fieldset {
   align-items: center;
   border: $style_border;
   background: $white;
+  margin: 0;
 
   &.selected {
     background: #dcdcdc;
